@@ -39,6 +39,7 @@ jobs:
         id: cache
         with:
           path: ${{ github.workspace }}/git-mirrors-cache
+          key: ${{ runner.os }}-git-mirrors-cache-${{ steps.get-time.outputs.NOW }}
 
       - name: Mirror the Github repos to Gitee
         uses: imnpc/git-mirrors@main
@@ -79,3 +80,7 @@ jobs:
           #mappings: "A=>B, C=>CC"+
           # 扩展参数，默认为 github.com,gitee.com
           #ssh_keyscans: github.com,gitee.com
+
+      - name: Print cache path
+        run: |
+          ls -la ${{ github.workspace }}/git-mirrors-cache
