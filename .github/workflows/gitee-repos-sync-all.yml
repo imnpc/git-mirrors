@@ -31,7 +31,7 @@ jobs:
       - name: Get Time
         id: get-time
         run: |
-          echo 'NOWTIME=date::$(/bin/date -u "+%Y%m%d%H%M%S")' >> $GITHUB_OUTPUT
+          echo "NOW=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT
         shell: bash
 
       - name: Cache src repos
@@ -39,7 +39,7 @@ jobs:
         id: cache
         with:
           path: ${{ github.workspace }}/git-mirrors-cache
-          key: ${{ runner.os }}-git-mirrors-cache-${{ steps.get-time.outputs.NOWTIME }}
+          key: ${{ runner.os }}-git-mirrors-cache-${{ steps.get-time.outputs.NOW }}
           restore-keys: ${{ runner.os }}-git-mirrors-cache
 
 
