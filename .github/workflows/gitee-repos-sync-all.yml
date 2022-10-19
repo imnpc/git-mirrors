@@ -25,14 +25,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get repo and time
+      - name: Get Time
         id: info
-        uses: actions/github-script@v3.1
-        with:
-          result-encoding: string
-          script: |
-            echo "time=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT;
-            echo "key=${context.repo.owner}-${context.repo.repo}" >> $GITHUB_OUTPUT;
+        run: |
+          echo "time=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT
+          echo "key=${context.repo.owner}-${context.repo.repo}" >> $GITHUB_OUTPUT
+        shell: bash
 
       - name: Cache src repos
         uses: actions/cache@v2.1.3
