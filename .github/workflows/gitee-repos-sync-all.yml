@@ -39,9 +39,6 @@ jobs:
         id: cache
         with:
           path: ${{ github.workspace }}/git-mirrors-cache
-          key: ${{ runner.os }}-git-mirrors-cache-${{ steps.get-time.outputs.NOW }}
-          restore-keys: ${{ runner.os }}-git-mirrors-cache
-
 
       - name: Mirror the Github repos to Gitee
         uses: imnpc/git-mirrors@main
@@ -65,7 +62,7 @@ jobs:
           # 默认为account_type，目的账户类型，可以设置为org（组织）或者user（用户）。
           # dst_account_type: org
           # 将代码缓存在指定目录，用于与 actions/cache配合以加速镜像过程
-          cache_path: "/github/workspace/git-mirrors-cache"
+          cache_path: ${{ github.workspace }}/git-mirrors-cache
           # 黑名单中的repos将不会被同步，如“repo1,repo2,repo3”
           black_list: "AutoApiSecret,go-common"
           # 仅同步白名单中的repos，如“repo1,repo2,repo3”
@@ -82,7 +79,3 @@ jobs:
           #mappings: "A=>B, C=>CC"+
           # 扩展参数，默认为 github.com,gitee.com
           #ssh_keyscans: github.com,gitee.com
-
-      - name: Print cache path
-        run: |
-          ls -la ${{ github.workspace }}/git-mirrors-cache
