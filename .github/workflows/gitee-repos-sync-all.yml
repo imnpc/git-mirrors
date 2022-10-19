@@ -15,7 +15,7 @@ on:
   push:
   # 定时任务触发
   schedule:
-    # 每天北京时间9点跑
+    # 每天北京时间 1 点跑
     # Runs at 17:00 UTC (1:00 AM Beijing) every day
     - cron:  '0 17 * * *'
 
@@ -31,7 +31,7 @@ jobs:
       - name: Get Time
         id: get-time
         run: |
-          echo 'name=date::$(/bin/date -u "+%Y%m%d%H%M%S")' >> $GITHUB_OUTPUT
+          echo 'NOWTIME=date::$(/bin/date -u "+%Y%m%d%H%M%S")' >> $GITHUB_OUTPUT
         shell: bash
 
       - name: Cache src repos
@@ -39,7 +39,7 @@ jobs:
         id: cache
         with:
           path: ${{ github.workspace }}/git-mirrors-cache
-          key: ${{ runner.os }}-git-mirrors-cache-${{ steps.get-time.outputs.date }}
+          key: ${{ runner.os }}-git-mirrors-cache-${{ steps.get-time.outputs.NOWTIME }}
           restore-keys: ${{ runner.os }}-git-mirrors-cache
 
 
