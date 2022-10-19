@@ -33,7 +33,7 @@ jobs:
         shell: bash
 
       - name: Cache src repos
-        uses: actions/cache@v2.1.3
+        uses: actions/cache@v3
         id: cache
         with:
           path: ${{ github.workspace }}/git-mirrors-cache
