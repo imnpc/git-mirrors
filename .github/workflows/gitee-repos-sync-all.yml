@@ -28,8 +28,8 @@ jobs:
       - name: Get Time
         id: info
         run: |
-          echo "time=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT
-          echo "key=${github.repository_owner}-${github.repository}" >> $GITHUB_OUTPUT
+          echo "time=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT;
+          echo "key=${github.repository_owner}-${github.repository}" >> $GITHUB_OUTPUT;
         shell: bash
 
       - name: Cache src repos
