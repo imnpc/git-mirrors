@@ -31,8 +31,8 @@ jobs:
         with:
           result-encoding: string
           script: |
-            core.setOutput('time', new Date(Date.now()).toISOString().replace(/[^0-9]/g, ""));
-            core.setOutput('key', `${context.repo.owner}-${context.repo.repo}`);
+            echo "time=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT 
+            echo "key=${context.repo.owner}-${context.repo.repo}" >> $GITHUB_OUTPUT 
 
       - name: Cache src repos
         uses: actions/cache@v2.1.3
